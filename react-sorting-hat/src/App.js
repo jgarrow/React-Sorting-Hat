@@ -1,18 +1,18 @@
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 import styled from "@emotion/styled";
 import "./App.css";
 
+import Welcome from "./components/Welcome";
 import SortingCeremony from "./components/SortingCeremony";
 
-const Button = styled(Link)`
-    display: inline-block;
-    cursor: pointer;
-    box-sizing: border-box;
-    padding: 5px 10px;
-    text-align: center;
-    background: lightgray;
-    border-radius: 5px;
+const AppContainer = styled.div`
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
 `;
 
 class App extends Component {
@@ -30,16 +30,10 @@ class App extends Component {
     }
 
     // "page" transitions
-    handleTransition = () => {
+    handleTransition = house => {
         const newPosition = this.state.componentPosition - 100;
 
-        this.setState({
-            ...this.state,
-            componentPosition: newPosition
-        });
-    };
-
-    incrementHouseScore = house => {
+        // increment house score when moving on to next "page"
         console.log("score state before updating: ", house, this.state[house]);
 
         const currentScore = this.state[house];
@@ -47,15 +41,28 @@ class App extends Component {
 
         console.log("score state after updating: ", house, newScore);
 
-        this.setState({ ...this.state, [house]: newScore });
+        this.setState({
+            ...this.state,
+            componentPosition: newPosition,
+            [house]: newScore
+        });
     };
+
+    // incrementHouseScore = house => {
+    //     console.log("score state before updating: ", house, this.state[house]);
+
+    //     const currentScore = this.state[house];
+    //     const newScore = currentScore + 1;
+
+    //     console.log("score state after updating: ", house, newScore);
+
+    //     this.setState({ ...this.state, [house]: newScore });
+    // };
 
     render() {
         return (
-            <div className="App">
-                <h1>Welcome to Hogwarts</h1>
-                <Button to="/sorting-ceremony">Begin Sorting Ceremony</Button>
-
+            <AppContainer>
+                <Route exact path="/" component={Welcome} />
                 <Route
                     exact
                     path="/sorting-ceremony"
@@ -66,13 +73,13 @@ class App extends Component {
                             ravenclaw={this.state.ravenclaw}
                             gryffindor={this.state.gryffindor}
                             slytherin={this.state.slytherin}
-                            incrementHouseScore={this.incrementHouseScore}
+                            // incrementHouseScore={this.incrementHouseScore}
                             handleTransition={this.handleTransition}
                             {...props}
                         />
                     )}
                 />
-            </div>
+            </AppContainer>
         );
     }
 }

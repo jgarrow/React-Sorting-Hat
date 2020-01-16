@@ -219,7 +219,7 @@ const SortingCeremony = props => {
                         ravenclaw={props.ravenclaw}
                         gryffindor={props.gryffindor}
                         slytherin={props.slytherin}
-                        incrementHouseScore={props.incrementHouseScore}
+                        // incrementHouseScore={props.incrementHouseScore}
                     />
                 ))}
             </SlidesContainer>

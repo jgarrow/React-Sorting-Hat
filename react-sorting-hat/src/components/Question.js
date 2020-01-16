@@ -30,6 +30,64 @@ const QuestionWrapper = styled.div`
     flex-grow: 1;
 `;
 
+const OptionContainer = styled.div`
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+`;
+
+const Option = styled.p`
+    cursor: pointer;
+    margin: 10px 0;
+
+    &:hover {
+        text-decoration: underline;
+    }
+`;
+
+// const Input = styled.div`
+//     position: absolute;
+//     opacity: 0;
+//     cursor: pointer;
+//     height: 0;
+//     width: 0;
+// `;
+
+const Checkbox = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: ${props => (props.selected ? "#2196F3" : "#eee")};
+
+    &:hover {
+        background-color: #ccc;
+        cursor: pointer;
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        display: ${props => {
+            console.log(props);
+            return props.selected ? "block" : "none";
+        }};
+        left: ${props => (props.selected ? "9px" : "0")};
+        top: ${props => (props.selected ? "5px" : "0")};
+        width: ${props => (props.selected ? "5px" : "auto")};
+        height: ${props => (props.selected ? "10px" : "auto")};
+        border: ${props => (props.selected ? "solid white" : "none")};
+        border-width: ${props => (props.selected ? "0 3px 3px 0" : "none")};
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+`;
+
 const NextContainer = styled.div`
     width: 100px;
     margin: 0 auto;
@@ -38,7 +96,7 @@ const NextContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     visibility: ${props =>
-        props.isNextDisplayed === true ? "visible" : "hidden"};
+        props.selectedAnswer !== null ? "visible" : "hidden"};
 `;
 
 const Button = styled.p`
@@ -65,19 +123,43 @@ class Question extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isNextDisplayed: false
+            // isNextDisplayed: false,
+            // isChecked: false,
+            selectedAnswer: null,
+            selectedAnswerHouse: ""
         };
     }
 
-    handleClick = () => {
+    // setSelectedAnswerHouse = answer => {
+    //     this.setState({ ...this.state, selectedAnswerHouse: answer.house });
+    // };
+
+    // handleCheckClick = index => {
+    //     this.setState({
+    //         ...this.state,
+    //         selectedAnswer: index
+    //     });
+    //     this.setState({
+    //         ...this.state,
+    //         isChecked: !this.state.isChecked
+    //     });
+    // };
+
+    handleClick = (answer, index) => {
+        if (index === this.state.selectedAnswer) {
+            index = null;
+        }
+
         this.setState({
             ...this.state,
-            isNextDisplayed: !this.state.isNextDisplayed
+            // isNextDisplayed: !this.state.isNextDisplayed,
+            selectedAnswerHouse: answer.house,
+            selectedAnswer: index
+            // isChecked: !this.state.isChecked
         });
     };
 
     render() {
-        // ({ qstn, incrementHouseScore, handleTransition }) => {
         const questionNum = this.props.qstn.question_num;
         const question = this.props.qstn.question;
         const options = this.props.qstn.options;
@@ -85,30 +167,74 @@ class Question extends Component {
             <QuestionSlide>
                 <QuestionWrapper>
                     <h1>{question}</h1>
-                    <ul>
+                    <div
+                    // css={{ listStyle: "none", paddingLeft: "0" }}
+                    >
                         {options.map((option, index) => (
-                            <li
-                                key={index}
-                                css={{ cursor: "pointer" }}
-                                onClick={() => {
-                                    this.props.incrementHouseScore(
-                                        option.house
-                                    );
-                                    this.handleClick();
-                                }}
-                            >
-                                {option.answer}
-                            </li>
+                            <OptionContainer key={index}>
+                                {/* <label
+                                
+                                className="container"
+                                htmlFor="option"
+                                // onClick={() => {
+                                //     this.handleClick();
+                                //     this.handleCheckClick();
+                                //     this.setSelectedAnswerHouse(option);
+                                // }}
+                            > */}
+
+                                <Checkbox
+                                    // id="option"
+                                    // name={`option_${index}`}
+                                    // type="checkbox"
+                                    // isChecked={this.state.isChecked}
+                                    selected={
+                                        this.state.selectedAnswer === index
+                                    }
+                                    onClick={() => {
+                                        // this.props.incrementHouseScore(
+                                        //     option.house
+                                        // );
+                                        // this.handleCheckClick(index);
+                                        // this.setSelectedAnswerHouse(option);
+                                        this.handleClick(option, index);
+                                    }}
+                                />
+                                <Option
+                                    isChecked={this.state.isChecked}
+                                    onClick={() => {
+                                        // this.props.incrementHouseScore(
+                                        //     option.house
+                                        // );
+                                        // this.handleCheckClick(index);
+                                        // this.setSelectedAnswerHouse(option);
+                                        this.handleClick(option, index);
+                                    }}
+                                >
+                                    {option.answer}
+                                </Option>
+                                {/* <span
+                                    className="checkmark"
+                                    // isChecked={this.state.isChecked}
+                                /> */}
+                                {/* </label> */}
+                            </OptionContainer>
                         ))}
-                    </ul>
-                    <NextContainer isNextDisplayed={this.state.isNextDisplayed}>
+                    </div>
+                    <NextContainer selectedAnswer={this.state.selectedAnswer}>
                         {questionNum !== 6 ? (
                             <Button
                                 css={{
                                     cursor: "pointer"
                                 }}
-                                // isNextDisplayed={this.state.isNextDisplayed}
-                                onClick={() => this.props.handleTransition()}
+                                onClick={() => {
+                                    this.props.handleTransition(
+                                        this.state.selectedAnswerHouse
+                                    );
+                                    // this.props.incrementHouseScore(
+                                    //     this.state.selectedAnswerHouse
+                                    // );
+                                }}
                             >
                                 Next
                             </Button>
@@ -117,7 +243,14 @@ class Question extends Component {
                                 css={{
                                     cursor: "pointer"
                                 }}
-                                onClick={() => this.props.handleTransition()}
+                                onClick={() => {
+                                    this.props.handleTransition(
+                                        this.state.selectedAnswerHouse
+                                    );
+                                    // this.props.incrementHouseScore(
+                                    //     this.state.selectedAnswerHouse
+                                    // );
+                                }}
                             >
                                 Finish
                             </Button>
@@ -127,8 +260,12 @@ class Question extends Component {
                                 cursor: "pointer",
                                 fontSize: "1.5rem"
                             }}
-                            // isNextDisplayed={this.state.isNextDisplayed}
-                            onClick={() => this.props.handleTransition()}
+                            onClick={() => {
+                                this.props.handleTransition();
+                                this.props.incrementHouseScore(
+                                    this.state.selectedAnswerHouse
+                                );
+                            }}
                         />
                     </NextContainer>
                 </QuestionWrapper>
