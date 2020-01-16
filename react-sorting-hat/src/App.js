@@ -19,6 +19,7 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
+            // for slide transition between questions
             componentPosition: 0,
             // "points" for determining which house you're in
             hufflepuff: 0,
@@ -39,10 +40,14 @@ class App extends Component {
     };
 
     incrementHouseScore = house => {
-        // const currentScore = this.state.house;
-        // const newScore = currentScore + 1;
+        console.log("score state before updating: ", house, this.state[house]);
 
-        this.setState({ ...this.state, house: this.state.house + 1 });
+        const currentScore = this.state[house];
+        const newScore = currentScore + 1;
+
+        console.log("score state after updating: ", house, newScore);
+
+        this.setState({ ...this.state, [house]: newScore });
     };
 
     render() {
