@@ -9,6 +9,40 @@ const OuterContainer = styled.div`
     max-height: 100vh;
     position: relative;
     display: inline-block;
+    background: ${props =>
+        props.house === "hufflepuff" &&
+        `repeating-linear-gradient(
+        145deg,
+        black,
+        black 10%,
+        #e9ac2d 10%,
+        yellow 15%,
+        #e9ac2d 20%
+    )`};
+    background: ${props =>
+        props.house === "ravenclaw" &&
+        `repeating-linear-gradient(145deg,#0d6585,#089ec7 4%,#089ec7 6%,#0d6585 10%,#ba9368 10%, #946b2d 15%, #735145 20%);`};
+    background: ${props =>
+        props.house === "gryffindor" &&
+        `repeating-linear-gradient(
+            145deg, 
+            #740001,
+            #ae0001 5%,
+            #740001 10%,
+            #ae0001 10%,
+            #d3a625 10%,
+            #eeba30 15%,
+            #d3a625 20%
+        )`};
+    background: ${props =>
+        props.house === "slytherin" &&
+        `repeating-linear-gradient(
+            145deg,
+            #2a623d,
+            #1a472a 10%,
+            #aaaaaa 10%,
+            #5d5d5d 20%
+        )`};
 `;
 
 const InnerContainer = styled.div`
@@ -122,7 +156,7 @@ class House extends Component {
 
     render() {
         return (
-            <OuterContainer>
+            <OuterContainer house={this.state.house}>
                 <InnerContainer>
                     <h1 css={{ textAlign: "center" }}>
                         Congratulations!
