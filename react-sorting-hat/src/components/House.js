@@ -93,46 +93,29 @@ class House extends Component {
             slytherin: this.props.slytherin
         };
 
-        console.log("houses: ", houses);
-
-        // TODO: handle if there's a tie --> want to pick randomly between houses that are tied for most points
-        // tiedHouses = Object.keys(houses)
-        //     .sort(function(keya, keyb) {
-        //         return houses[keyb] - houses[keya];
-        //     })
-        //     .forEach(function(key) {
-        //         console.log(key, houses[key]);
-        //     });
-
-        // console.log("tiedHouses: ", tiedHouses);
-
-        // only handles getting key ("house") with most points, no handling of ties
+        // handles getting key ("house") with most points
         yourHouse = Object.keys(houses).reduce((a, b) =>
             houses[a] > houses[b] ? a : b
         );
 
-        console.log("Your house: ", yourHouse);
-
         const highestHouseScore = this.props[yourHouse];
-        console.log("Your house score: ", highestHouseScore);
 
-        Object.keys(houses).forEach((house, index) => {
+        // if there are ties, populate tiedHouses with the houses with the highest score
+        Object.keys(houses).forEach(house => {
             if (this.props[house] === highestHouseScore) {
                 tiedHouses.push(house);
             }
         });
 
-        console.log("tiedHouses: ", tiedHouses);
-
+        // if there was only 1 house with the highest score, that's your house
         if (tiedHouses.length === 1) {
             yourHouse = tiedHouses[0];
         } else {
             const randomIndex = this.getRandomIndex(tiedHouses.length);
-            console.log("random index: ", randomIndex);
+
+            // if there was a tie, get yourHouse randomly from tiedHouses
             yourHouse = tiedHouses[randomIndex];
         }
-
-        console.log("Your final house: ", yourHouse);
 
         this.setState({ ...this.state, house: yourHouse });
     }

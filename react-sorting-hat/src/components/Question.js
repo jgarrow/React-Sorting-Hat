@@ -14,13 +14,6 @@ const QuestionSlide = styled.div`
     display: inline-block;
 `;
 
-// width: 100vw;
-// height: 100vh;
-// display: inline-block;
-// overflow: auto;
-// overflow-x: hidden;
-// position: relative;
-
 const QuestionWrapper = styled.div`
     width: 100%;
     height: 100%;
@@ -48,14 +41,6 @@ const Option = styled.p`
         text-decoration: underline;
     }
 `;
-
-// const Input = styled.div`
-//     position: absolute;
-//     opacity: 0;
-//     cursor: pointer;
-//     height: 0;
-//     width: 0;
-// `;
 
 const Checkbox = styled.div`
     position: absolute;
@@ -121,27 +106,10 @@ class Question extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // isNextDisplayed: false,
-            // isChecked: false,
             selectedAnswer: null,
             selectedAnswerHouse: ""
         };
     }
-
-    // setSelectedAnswerHouse = answer => {
-    //     this.setState({ ...this.state, selectedAnswerHouse: answer.house });
-    // };
-
-    // handleCheckClick = index => {
-    //     this.setState({
-    //         ...this.state,
-    //         selectedAnswer: index
-    //     });
-    //     this.setState({
-    //         ...this.state,
-    //         isChecked: !this.state.isChecked
-    //     });
-    // };
 
     handleClick = (answer, index) => {
         if (index === this.state.selectedAnswer) {
@@ -150,10 +118,8 @@ class Question extends Component {
 
         this.setState({
             ...this.state,
-            // isNextDisplayed: !this.state.isNextDisplayed,
             selectedAnswerHouse: answer.house,
             selectedAnswer: index
-            // isChecked: !this.state.isChecked
         });
     };
 
@@ -165,57 +131,25 @@ class Question extends Component {
             <QuestionSlide>
                 <QuestionWrapper>
                     <h1>{question}</h1>
-                    <div
-                    // css={{ listStyle: "none", paddingLeft: "0" }}
-                    >
+                    <div>
                         {options.map((option, index) => (
                             <OptionContainer key={index}>
-                                {/* <label
-                                
-                                className="container"
-                                htmlFor="option"
-                                // onClick={() => {
-                                //     this.handleClick();
-                                //     this.handleCheckClick();
-                                //     this.setSelectedAnswerHouse(option);
-                                // }}
-                            > */}
-
                                 <Checkbox
-                                    // id="option"
-                                    // name={`option_${index}`}
-                                    // type="checkbox"
-                                    // isChecked={this.state.isChecked}
                                     selected={
                                         this.state.selectedAnswer === index
                                     }
                                     onClick={() => {
-                                        // this.props.incrementHouseScore(
-                                        //     option.house
-                                        // );
-                                        // this.handleCheckClick(index);
-                                        // this.setSelectedAnswerHouse(option);
                                         this.handleClick(option, index);
                                     }}
                                 />
                                 <Option
                                     isChecked={this.state.isChecked}
                                     onClick={() => {
-                                        // this.props.incrementHouseScore(
-                                        //     option.house
-                                        // );
-                                        // this.handleCheckClick(index);
-                                        // this.setSelectedAnswerHouse(option);
                                         this.handleClick(option, index);
                                     }}
                                 >
                                     {option.answer}
                                 </Option>
-                                {/* <span
-                                    className="checkmark"
-                                    // isChecked={this.state.isChecked}
-                                /> */}
-                                {/* </label> */}
                             </OptionContainer>
                         ))}
                     </div>
@@ -229,9 +163,6 @@ class Question extends Component {
                                     this.props.handleTransition(
                                         this.state.selectedAnswerHouse
                                     );
-                                    // this.props.incrementHouseScore(
-                                    //     this.state.selectedAnswerHouse
-                                    // );
                                 }}
                             >
                                 Next
@@ -248,9 +179,6 @@ class Question extends Component {
                                     this.props.handleTransition(
                                         this.state.selectedAnswerHouse
                                     );
-                                    // this.props.incrementHouseScore(
-                                    //     this.state.selectedAnswerHouse
-                                    // );
                                 }}
                             >
                                 Finish

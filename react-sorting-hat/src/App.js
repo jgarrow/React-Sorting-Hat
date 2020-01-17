@@ -30,17 +30,12 @@ class App extends Component {
         };
     }
 
-    // "page" transitions
+    // "page" transitions -- also increments score
     handleTransition = house => {
         const newPosition = this.state.componentPosition - 100;
 
-        // increment house score when moving on to next "page"
-        // console.log("score state before updating: ", house, this.state[house]);
-
         const currentScore = this.state[house];
         const newScore = currentScore + 1;
-
-        // console.log("score state after updating: ", house, newScore);
 
         this.setState({
             ...this.state,
@@ -48,17 +43,6 @@ class App extends Component {
             [house]: newScore
         });
     };
-
-    // incrementHouseScore = house => {
-    //     console.log("score state before updating: ", house, this.state[house]);
-
-    //     const currentScore = this.state[house];
-    //     const newScore = currentScore + 1;
-
-    //     console.log("score state after updating: ", house, newScore);
-
-    //     this.setState({ ...this.state, [house]: newScore });
-    // };
 
     render() {
         return (
