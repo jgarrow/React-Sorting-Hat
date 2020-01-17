@@ -73,10 +73,7 @@ const Checkbox = styled.div`
     &:after {
         content: "";
         position: absolute;
-        display: ${props => {
-            console.log(props);
-            return props.selected ? "block" : "none";
-        }};
+        display: ${props => (props.selected ? "block" : "none")};
         left: ${props => (props.selected ? "9px" : "0")};
         top: ${props => (props.selected ? "5px" : "0")};
         width: ${props => (props.selected ? "5px" : "auto")};
@@ -247,14 +244,14 @@ class Question extends Component {
                                     color: "black"
                                 }}
                                 to="/your-house"
-                                // onClick={() => {
-                                //     this.props.handleTransition(
-                                //         this.state.selectedAnswerHouse
-                                //     );
-                                // this.props.incrementHouseScore(
-                                //     this.state.selectedAnswerHouse
-                                // );
-                                // }}
+                                onClick={() => {
+                                    this.props.handleTransition(
+                                        this.state.selectedAnswerHouse
+                                    );
+                                    // this.props.incrementHouseScore(
+                                    //     this.state.selectedAnswerHouse
+                                    // );
+                                }}
                             >
                                 Finish
                             </Link>

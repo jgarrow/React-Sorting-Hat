@@ -35,12 +35,12 @@ class App extends Component {
         const newPosition = this.state.componentPosition - 100;
 
         // increment house score when moving on to next "page"
-        console.log("score state before updating: ", house, this.state[house]);
+        // console.log("score state before updating: ", house, this.state[house]);
 
         const currentScore = this.state[house];
         const newScore = currentScore + 1;
 
-        console.log("score state after updating: ", house, newScore);
+        // console.log("score state after updating: ", house, newScore);
 
         this.setState({
             ...this.state,
