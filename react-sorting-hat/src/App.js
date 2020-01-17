@@ -5,6 +5,7 @@ import "./App.css";
 
 import Welcome from "./components/Welcome";
 import SortingCeremony from "./components/SortingCeremony";
+import House from "./components/House";
 
 const AppContainer = styled.div`
     display: flex;
@@ -75,6 +76,20 @@ class App extends Component {
                             slytherin={this.state.slytherin}
                             // incrementHouseScore={this.incrementHouseScore}
                             handleTransition={this.handleTransition}
+                            {...props}
+                        />
+                    )}
+                />
+                <Route
+                    exact
+                    path="/your-house"
+                    render={props => (
+                        <House
+                            // componentPosition={this.state.componentPosition}
+                            hufflepuff={this.state.hufflepuff}
+                            ravenclaw={this.state.ravenclaw}
+                            gryffindor={this.state.gryffindor}
+                            slytherin={this.state.slytherin}
                             {...props}
                         />
                     )}

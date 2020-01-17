@@ -2,6 +2,7 @@
 import { css, jsx } from "@emotion/core";
 import React, { Component } from "react";
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
 import { MdArrowForward } from "react-icons/md";
 
@@ -239,34 +240,39 @@ class Question extends Component {
                                 Next
                             </Button>
                         ) : (
-                            <Button
+                            <Link
                                 css={{
-                                    cursor: "pointer"
+                                    cursor: "pointer",
+                                    textDecoration: "none",
+                                    color: "black"
                                 }}
-                                onClick={() => {
-                                    this.props.handleTransition(
-                                        this.state.selectedAnswerHouse
-                                    );
-                                    // this.props.incrementHouseScore(
-                                    //     this.state.selectedAnswerHouse
-                                    // );
-                                }}
+                                to="/your-house"
+                                // onClick={() => {
+                                //     this.props.handleTransition(
+                                //         this.state.selectedAnswerHouse
+                                //     );
+                                // this.props.incrementHouseScore(
+                                //     this.state.selectedAnswerHouse
+                                // );
+                                // }}
                             >
                                 Finish
-                            </Button>
+                            </Link>
                         )}
-                        <MdArrowForward
-                            css={{
-                                cursor: "pointer",
-                                fontSize: "1.5rem"
-                            }}
-                            onClick={() => {
-                                this.props.handleTransition();
-                                this.props.incrementHouseScore(
-                                    this.state.selectedAnswerHouse
-                                );
-                            }}
-                        />
+                        {questionNum !== 6 && (
+                            <MdArrowForward
+                                css={{
+                                    cursor: "pointer",
+                                    fontSize: "1.5rem"
+                                }}
+                                onClick={() => {
+                                    this.props.handleTransition();
+                                    this.props.incrementHouseScore(
+                                        this.state.selectedAnswerHouse
+                                    );
+                                }}
+                            />
+                        )}
                     </NextContainer>
                 </QuestionWrapper>
             </QuestionSlide>

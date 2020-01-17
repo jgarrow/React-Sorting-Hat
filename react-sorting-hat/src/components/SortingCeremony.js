@@ -19,7 +19,7 @@ const SlidesContainer = styled.div`
     transform: ${props => css`translateX(${props.translateValue}%)`};
     transition: transform ease-out 0.45s;
     display: grid;
-    grid-template-columns: repeat(4, 100vw);
+    grid-template-columns: repeat(6, 100vw);
 `;
 
 // Hufflepuff answers --
