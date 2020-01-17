@@ -133,7 +133,7 @@ const questions = [
     {
         question_num: 4,
         question:
-            "After you died, what would you most like people to do when they hear your name?",
+            "After you die, what would you most like people to do when they hear your name?",
         options: [
             {
                 house: "hufflepuff",

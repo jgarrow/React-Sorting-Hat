@@ -15,8 +15,9 @@ const QuestionSlide = styled.div`
 `;
 
 const QuestionWrapper = styled.div`
-    width: 100%;
+    width: 80%;
     height: 100%;
+    margin: 0 auto;
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -102,6 +103,27 @@ const Button = styled.p`
     }
 `;
 
+const StyledLink = styled(Link)`
+    cursor: pointer;
+    text-decoration: none;
+    background: #81a4db;
+    padding: 5px 10px;
+    color: black;
+    font-size: 1rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    width: 50%;
+    max-width: 70%;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        color: white;
+        background: #356abc;
+        box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.25);
+    }
+`;
+
 class Question extends Component {
     constructor(props) {
         super(props);
@@ -168,13 +190,9 @@ class Question extends Component {
                                 Next
                             </Button>
                         ) : (
-                            <Link
-                                css={{
-                                    cursor: "pointer",
-                                    textDecoration: "none",
-                                    color: "black"
-                                }}
+                            <StyledLink
                                 to="/your-house"
+                                // still need to call handleTransition so that the score will increment for the last question
                                 onClick={() => {
                                     this.props.handleTransition(
                                         this.state.selectedAnswerHouse
@@ -182,7 +200,7 @@ class Question extends Component {
                                 }}
                             >
                                 Finish
-                            </Link>
+                            </StyledLink>
                         )}
                         {questionNum !== 6 && (
                             <MdArrowForward

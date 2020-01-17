@@ -46,6 +46,7 @@ class App extends Component {
 
     render() {
         return (
+            // Some questions pulled from the Pottermore Sorting Hat quiz
             <AppContainer>
                 <Route exact path="/" component={Welcome} />
                 <Route
