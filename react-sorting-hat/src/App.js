@@ -1,21 +1,91 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Route } from "react-router-dom";
+import styled from "@emotion/styled";
+import "./fonts/HarryPotter.ttf";
+import "./fonts/AnimalesFantastic.otf";
+import "./App.css";
+
+import Welcome from "./components/Welcome";
+import SortingCeremony from "./components/SortingCeremony";
+import House from "./components/House";
+
+const AppContainer = styled.div`
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(https://cdn.hipwallpaper.com/m/12/2/3k5wZX.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+`;
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+    constructor() {
+        super();
+        this.state = {
+            // for slide transition between questions
+            componentPosition: 0,
+            // "points" for determining which house you're in
+            hufflepuff: 0,
+            ravenclaw: 0,
+            gryffindor: 0,
+            slytherin: 0
+        };
+    }
+
+    // "page" transitions -- also increments score
+    handleTransition = house => {
+        const newPosition = this.state.componentPosition - 100;
+
+        const currentScore = this.state[house];
+        const newScore = currentScore + 1;
+
+        this.setState({
+            ...this.state,
+            componentPosition: newPosition,
+            [house]: newScore
+        });
+    };
+
+    render() {
+        return (
+            // Some questions pulled from the Pottermore Sorting Hat quiz
+            <AppContainer>
+                <Route exact path="/" component={Welcome} />
+                <Route
+                    exact
+                    path="/sorting-ceremony"
+                    render={props => (
+                        <SortingCeremony
+                            componentPosition={this.state.componentPosition}
+                            hufflepuff={this.state.hufflepuff}
+                            ravenclaw={this.state.ravenclaw}
+                            gryffindor={this.state.gryffindor}
+                            slytherin={this.state.slytherin}
+                            handleTransition={this.handleTransition}
+                            {...props}
+                        />
+                    )}
+                />
+                <Route
+                    exact
+                    path="/your-house"
+                    render={props => (
+                        <House
+                            hufflepuff={this.state.hufflepuff}
+                            ravenclaw={this.state.ravenclaw}
+                            gryffindor={this.state.gryffindor}
+                            slytherin={this.state.slytherin}
+                            {...props}
+                        />
+                    )}
+                />
+            </AppContainer>
+        );
+    }
 }
 
 export default App;
