@@ -53,6 +53,12 @@ const InnerContainer = styled.div`
     justify-content: center;
     align-items: center;
     height: 100%;
+    width: 80%;
+    margin: 0 auto;
+
+    @media (max-width: 760px) {
+        width: 95%;
+    }
 `;
 
 const Title = styled.div`
@@ -76,7 +82,9 @@ const HouseName = styled.h1`
 const GridContainer = styled.div`
     width: 100%;
     max-width: 700px;
-    margin-top: 1.5rem;
+    height: calc(100vh - (4rem + 225px));
+    overflow-y: scroll;
+    margin: 1.5rem 0;
     box-sizing: border-box;
     padding: 1rem 1.5rem;
     display: flex;
@@ -90,8 +98,13 @@ const GridContainer = styled.div`
 
 const Grid = styled.div`
     display: grid;
-    grid-template-columns: 120px 150px;
+    grid-template-columns: repeat(2, 120px 150px);
     grid-gap: 15px;
+    margin: 0 auto;
+
+    @media (max-width: 650px) {
+        grid-template-columns: 120px 150px;
+    }
 `;
 
 const houseInfo = {
@@ -217,7 +230,9 @@ class House extends Component {
                                 flexFlow: "column nowrap",
                                 justifyContent: "center",
                                 alignItems: "center",
-                                paddingTop: "1rem"
+                                paddingTop: "1rem",
+                                boxSizing: "border-box",
+                                height: "calc(100vh - 100px)"
                             }}
                         >
                             <img
@@ -228,58 +243,36 @@ class House extends Component {
                                 alt={`${this.state.house} crest`}
                             />
                             <GridContainer>
-                                <div>
-                                    <Grid>
-                                        <p>Founder: </p>
-                                        <p>
-                                            {
-                                                houseInfo[this.state.house]
-                                                    .founder
-                                            }
-                                        </p>
-                                        <p>Animal: </p>
-                                        <p>
-                                            {houseInfo[this.state.house].animal}
-                                        </p>
-                                        <p>Colors: </p>
-                                        <p>
-                                            {houseInfo[this.state.house].colors}
-                                        </p>
-                                        <p>Traits: </p>
-                                        <p>
-                                            {houseInfo[this.state.house].traits}
-                                        </p>
-                                    </Grid>
-                                </div>
-
-                                <div>
-                                    <Grid>
-                                        <p>Common Room: </p>
-                                        <p>
-                                            {
-                                                houseInfo[this.state.house][
-                                                    "common_room"
-                                                ]
-                                            }
-                                        </p>
-                                        <p>Head of House: </p>
-                                        <p>
-                                            {houseInfo[this.state.house].head}
-                                        </p>
-                                        <p>House Ghost: </p>
-                                        <p>
-                                            {houseInfo[this.state.house].ghost}
-                                        </p>
-                                        <p>Famous People: </p>
-                                        <p>
-                                            {
-                                                houseInfo[this.state.house][
-                                                    "famous_people"
-                                                ]
-                                            }
-                                        </p>
-                                    </Grid>
-                                </div>
+                                <Grid>
+                                    <p>Founder: </p>
+                                    <p>{houseInfo[this.state.house].founder}</p>
+                                    <p>Animal: </p>
+                                    <p>{houseInfo[this.state.house].animal}</p>
+                                    <p>Colors: </p>
+                                    <p>{houseInfo[this.state.house].colors}</p>
+                                    <p>Traits: </p>
+                                    <p>{houseInfo[this.state.house].traits}</p>
+                                    <p>Common Room: </p>
+                                    <p>
+                                        {
+                                            houseInfo[this.state.house][
+                                                "common_room"
+                                            ]
+                                        }
+                                    </p>
+                                    <p>Head of House: </p>
+                                    <p>{houseInfo[this.state.house].head}</p>
+                                    <p>House Ghost: </p>
+                                    <p>{houseInfo[this.state.house].ghost}</p>
+                                    <p>Famous People: </p>
+                                    <p>
+                                        {
+                                            houseInfo[this.state.house][
+                                                "famous_people"
+                                            ]
+                                        }
+                                    </p>
+                                </Grid>
                             </GridContainer>
                         </div>
                     )}
