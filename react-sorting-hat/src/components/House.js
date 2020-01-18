@@ -3,7 +3,6 @@ import { css, jsx } from "@emotion/core";
 import React, { Component } from "react";
 import styled from "@emotion/styled";
 
-// import Banner from "./Banner";
 import Banner from "../img/Banner-2.svg";
 
 const OuterContainer = styled.div`
@@ -73,15 +72,6 @@ const HouseName = styled.h1`
     margin: 0;
     font-size: 1.5rem;
 `;
-
-// const Card = styled.div`
-//     width: 80%;
-//     background: #5b5b5b;
-//     border-radius: 12px;
-//     box-shadow: 0px 0px 10px 0px #5b5b5b;
-//     box-sizing: border-box;
-//     padding-top: 1.5rem;
-// `;
 
 const GridContainer = styled.div`
     width: 100%;
@@ -223,8 +213,6 @@ class House extends Component {
         return (
             <OuterContainer house={this.state.house}>
                 <InnerContainer>
-                    {/* <Card> */}
-                    {/* <Banner house={this.state.house} /> */}
                     <Title>
                         <HouseName className="house-name">
                             {this.state.house}
@@ -316,7 +304,6 @@ class House extends Component {
                             </GridContainer>
                         </div>
                     )}
-                    {/* </Card> */}
                 </InnerContainer>
             </OuterContainer>
         );

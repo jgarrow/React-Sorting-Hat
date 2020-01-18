@@ -65,7 +65,6 @@ class App extends Component {
                             ravenclaw={this.state.ravenclaw}
                             gryffindor={this.state.gryffindor}
                             slytherin={this.state.slytherin}
-                            // incrementHouseScore={this.incrementHouseScore}
                             handleTransition={this.handleTransition}
                             {...props}
                         />
@@ -76,7 +75,6 @@ class App extends Component {
                     path="/your-house"
                     render={props => (
                         <House
-                            // componentPosition={this.state.componentPosition}
                             hufflepuff={this.state.hufflepuff}
                             ravenclaw={this.state.ravenclaw}
                             gryffindor={this.state.gryffindor}

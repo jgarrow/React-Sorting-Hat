@@ -4,8 +4,6 @@ import React, { Component } from "react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 
-import { MdArrowForward } from "react-icons/md";
-
 const QuestionSlide = styled.div`
     width: 100vw;
     height: 100vh;
@@ -88,7 +86,7 @@ const NextContainer = styled.div`
 
 const Button = styled.p`
     cursor: pointer;
-    background: #81a4db;
+    background: #faebd7;
     padding: 5px 10px;
     color: black;
     font-size: 1rem;
@@ -101,7 +99,7 @@ const Button = styled.p`
 
     &:hover {
         color: white;
-        background: #356abc;
+        background: #948571;
         box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.25);
     }
 `;
@@ -204,20 +202,6 @@ class Question extends Component {
                             >
                                 Finish
                             </StyledLink>
-                        )}
-                        {questionNum !== 6 && (
-                            <MdArrowForward
-                                css={{
-                                    cursor: "pointer",
-                                    fontSize: "1.5rem"
-                                }}
-                                onClick={() => {
-                                    this.props.handleTransition();
-                                    this.props.incrementHouseScore(
-                                        this.state.selectedAnswerHouse
-                                    );
-                                }}
-                            />
                         )}
                     </NextContainer>
                 </QuestionWrapper>
