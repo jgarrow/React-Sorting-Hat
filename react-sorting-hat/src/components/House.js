@@ -69,8 +69,9 @@ const Title = styled.div`
 const HouseName = styled.h1`
     text-align: center;
     position: relative;
-    top: 1.5rem;
+    top: 1.85rem;
     margin: 0;
+    font-size: 1.5rem;
 `;
 
 // const Card = styled.div`
@@ -225,7 +226,9 @@ class House extends Component {
                     {/* <Card> */}
                     {/* <Banner house={this.state.house} /> */}
                     <Title>
-                        <HouseName>{this.state.house}</HouseName>
+                        <HouseName className="house-name">
+                            {this.state.house}
+                        </HouseName>
                     </Title>
                     {this.state.house !== "" && (
                         <div

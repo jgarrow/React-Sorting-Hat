@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import styled from "@emotion/styled";
+import "./fonts/HarryPotter.ttf";
+import "./fonts/lumos-font/Lumos.ttf";
 import "./App.css";
 
 import Welcome from "./components/Welcome";
@@ -8,12 +10,16 @@ import SortingCeremony from "./components/SortingCeremony";
 import House from "./components/House";
 
 const AppContainer = styled.div`
+    box-sizing: border-box;
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 100vw;
     height: 100vh;
+    background-image: url(https://cdn.hipwallpaper.com/m/12/2/3k5wZX.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 `;
 
 class App extends Component {

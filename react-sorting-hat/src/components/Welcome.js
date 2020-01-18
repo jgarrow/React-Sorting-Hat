@@ -2,6 +2,12 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 
+const Heading = styled.h1`
+    font-family: "Harry Potter";
+    font-size: 3rem;
+    margin-top: 5rem;
+`;
+
 const Button = styled(Link)`
     display: inline-block;
     cursor: pointer;
@@ -17,7 +23,7 @@ const Button = styled(Link)`
 const Welcome = () => {
     return (
         <>
-            <h1>Welcome to Hogwarts</h1>
+            <Heading>Welcome to Hogwarts</Heading>
             <Button to="/sorting-ceremony">Begin Sorting Ceremony</Button>
         </>
     );

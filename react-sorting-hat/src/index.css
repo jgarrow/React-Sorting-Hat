@@ -1,5 +1,28 @@
+@font-face {
+    font-family: "Harry Potter";
+    font-style: normal;
+    font-weight: 400;
+    src: url("./fonts/HarryPotter.ttf");
+}
+
+@font-face {
+    font-family: "Fantastic Beasts";
+    /* font-style: normal;
+    font-weight: 400; */
+    src: url("./fonts/AnimalesFantastic.otf");
+}
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.hogwarts-heading {
+    font-family: "Harry Potter";
+    font-size: 3rem;
+}
+
+.house-name {
+    font-family: "Fantastic Beasts";
 }
