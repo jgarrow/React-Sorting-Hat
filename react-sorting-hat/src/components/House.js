@@ -3,6 +3,9 @@ import { css, jsx } from "@emotion/core";
 import React, { Component } from "react";
 import styled from "@emotion/styled";
 
+// import Banner from "./Banner";
+import Banner from "../img/Banner-2.svg";
+
 const OuterContainer = styled.div`
     width: 100vw;
     height: 100vh;
@@ -10,7 +13,7 @@ const OuterContainer = styled.div`
     position: relative;
     display: inline-block;
     background: ${props =>
-        props.house === "hufflepuff" &&
+        props.house === "Hufflepuff" &&
         `repeating-linear-gradient(
         145deg,
         black,
@@ -20,10 +23,10 @@ const OuterContainer = styled.div`
         #e9ac2d 20%
     )`};
     background: ${props =>
-        props.house === "ravenclaw" &&
+        props.house === "Ravenclaw" &&
         `repeating-linear-gradient(145deg,#0d6585,#089ec7 4%,#089ec7 6%,#0d6585 10%,#ba9368 10%, #946b2d 15%, #735145 20%);`};
     background: ${props =>
-        props.house === "gryffindor" &&
+        props.house === "Gryffindor" &&
         `repeating-linear-gradient(
             145deg, 
             #740001,
@@ -35,7 +38,7 @@ const OuterContainer = styled.div`
             #d3a625 20%
         )`};
     background: ${props =>
-        props.house === "slytherin" &&
+        props.house === "Slytherin" &&
         `repeating-linear-gradient(
             145deg,
             #2a623d,
@@ -46,13 +49,72 @@ const OuterContainer = styled.div`
 `;
 
 const InnerContainer = styled.div`
-    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+`;
+
+const Title = styled.div`
+    background-image: url(${Banner});
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100px;
+    width: 300px;
     margin: 0 auto;
+    position: relative;
+`;
+
+const HouseName = styled.h1`
+    text-align: center;
+    position: relative;
+    top: 1.5rem;
+    margin: 0;
+`;
+
+// const Card = styled.div`
+//     width: 80%;
+//     background: #5b5b5b;
+//     border-radius: 12px;
+//     box-shadow: 0px 0px 10px 0px #5b5b5b;
+//     box-sizing: border-box;
+//     padding-top: 1.5rem;
+// `;
+
+const GridContainer = styled.div`
+    width: 100%;
+    max-width: 700px;
+    margin-top: 1.5rem;
+    box-sizing: border-box;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: #faebd7;
+    border-radius: 12px;
+    box-shadow: 0px 0px 5px 0px #a4a4a4;
+`;
+
+const Grid = styled.div`
+    display: grid;
+    grid-template-columns: 120px 150px;
+    grid-gap: 15px;
+    grid-template-areas: "label      desc";
+`;
+
+const Label = styled.p`
+    grid-area: label;
+`;
+
+const Description = styled.p`
+    grid-area: desc;
 `;
 
 const houseInfo = {
-    hufflepuff: {
-        name: "hufflepuff",
+    Hufflepuff: {
+        name: "Hufflepuff",
         crest:
             "https://vignette.wikia.nocookie.net/pottermore/images/5/5e/Hufflepuff_crest.png/revision/latest/scale-to-width-down/180?cb=20111112232427",
         founder: "Helga Hufflepuff",
@@ -64,8 +126,8 @@ const houseInfo = {
         ghost: "Fat Friar",
         famous_people: "Newt Scamander"
     },
-    ravenclaw: {
-        name: "ravenclaw",
+    Ravenclaw: {
+        name: "Ravenclaw",
         crest:
             "https://vignette.wikia.nocookie.net/pottermore/images/4/40/Ravenclaw_Crest_1.png/revision/latest/scale-to-width-down/180?cb=20140604194505",
         founder: "Rowena Ravenclaw",
@@ -77,8 +139,8 @@ const houseInfo = {
         ghost: "Grey Lady",
         famous_people: "Garrick Ollivander, Filius Flitwick, Gilderoy Lockhart"
     },
-    gryffindor: {
-        name: "gryffindor",
+    Gryffindor: {
+        name: "Gryffindor",
         crest:
             "https://vignette.wikia.nocookie.net/pottermore/images/1/16/Gryffindor_crest.png/revision/latest/scale-to-width-down/180?cb=20111112232412",
         founder: "Godric Gryffindor",
@@ -88,10 +150,10 @@ const houseInfo = {
         common_room: "Gryffindor Tower",
         head: "Minerva McGonagall",
         ghost: "Nearly-Headless Nick",
-        famous_people: "Minerva McGonagall, "
+        famous_people: "Albus Dumbledore, Minerva McGonagall, Harry Potter"
     },
-    slytherin: {
-        name: "slytherin",
+    Slytherin: {
+        name: "Slytherin",
         crest:
             "https://vignette.wikia.nocookie.net/pottermore/images/4/45/Slytherin_Crest.png/revision/latest/scale-to-width-down/180?cb=20111112232353",
         founder: "Salazar Slytherin",
@@ -151,6 +213,8 @@ class House extends Component {
             yourHouse = tiedHouses[randomIndex];
         }
 
+        yourHouse = yourHouse.charAt(0).toUpperCase() + yourHouse.slice(1);
+        console.log("yourHouse: ", yourHouse);
         this.setState({ ...this.state, house: yourHouse });
     }
 
@@ -158,11 +222,11 @@ class House extends Component {
         return (
             <OuterContainer house={this.state.house}>
                 <InnerContainer>
-                    <h1 css={{ textAlign: "center" }}>
-                        Congratulations!
-                        <br />
-                        You are in {this.state.house}!
-                    </h1>
+                    {/* <Card> */}
+                    {/* <Banner house={this.state.house} /> */}
+                    <Title>
+                        <HouseName>{this.state.house}</HouseName>
+                    </Title>
                     {this.state.house !== "" && (
                         <div
                             css={{
@@ -170,7 +234,8 @@ class House extends Component {
                                 display: "flex",
                                 flexFlow: "column nowrap",
                                 justifyContent: "center",
-                                alignItems: "center"
+                                alignItems: "center",
+                                paddingTop: "1rem"
                             }}
                         >
                             <img
@@ -180,29 +245,75 @@ class House extends Component {
                                 src={houseInfo[this.state.house].crest}
                                 alt={`${this.state.house} crest`}
                             />
-                            <p>
-                                Founder: {houseInfo[this.state.house].founder}
-                            </p>
-                            <p>Animal: {houseInfo[this.state.house].animal}</p>
-                            <p>Colors: {houseInfo[this.state.house].colors}</p>
-                            <p>Traits: {houseInfo[this.state.house].traits}</p>
-                            <p>
-                                Common Room:{" "}
-                                {houseInfo[this.state.house]["common_room"]}
-                            </p>
-                            <p>
-                                Head of House:{" "}
-                                {houseInfo[this.state.house].head}
-                            </p>
-                            <p>
-                                House Ghost: {houseInfo[this.state.house].ghost}
-                            </p>
-                            <p>
-                                Famous People:{" "}
-                                {houseInfo[this.state.house]["famous_people"]}
-                            </p>
+                            <GridContainer>
+                                <div>
+                                    <Grid>
+                                        <Label>Founder: </Label>
+                                        <Description>
+                                            {
+                                                houseInfo[this.state.house]
+                                                    .founder
+                                            }
+                                        </Description>
+                                    </Grid>
+                                    <Grid>
+                                        <Label>Animal: </Label>
+                                        <Description>
+                                            {houseInfo[this.state.house].animal}
+                                        </Description>
+                                    </Grid>
+                                    <Grid>
+                                        <Label>Colors: </Label>
+                                        <Description>
+                                            {houseInfo[this.state.house].colors}
+                                        </Description>
+                                    </Grid>
+                                    <Grid>
+                                        <Label>Traits: </Label>
+                                        <Description>
+                                            {houseInfo[this.state.house].traits}
+                                        </Description>
+                                    </Grid>
+                                </div>
+
+                                <div>
+                                    <Grid>
+                                        <Label>Common Room: </Label>
+                                        <Description>
+                                            {
+                                                houseInfo[this.state.house][
+                                                    "common_room"
+                                                ]
+                                            }
+                                        </Description>
+                                    </Grid>
+                                    <Grid>
+                                        <Label>Head of House: </Label>
+                                        <Description>
+                                            {houseInfo[this.state.house].head}
+                                        </Description>
+                                    </Grid>
+                                    <Grid>
+                                        <Label>House Ghost: </Label>
+                                        <Description>
+                                            {houseInfo[this.state.house].ghost}
+                                        </Description>
+                                    </Grid>
+                                    <Grid>
+                                        <Label>Famous People: </Label>
+                                        <Description>
+                                            {
+                                                houseInfo[this.state.house][
+                                                    "famous_people"
+                                                ]
+                                            }
+                                        </Description>
+                                    </Grid>
+                                </div>
+                            </GridContainer>
                         </div>
                     )}
+                    {/* </Card> */}
                 </InnerContainer>
             </OuterContainer>
         );
