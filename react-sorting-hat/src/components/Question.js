@@ -111,6 +111,11 @@ const Checkbox = styled.div`
     @media (max-width: 960px) {
         width: 1rem;
         height: 1rem;
+
+        &:after {
+            left: ${props => (props.selected ? "4px" : "0")};
+            top: 0;
+        }
     }
 `;
 
