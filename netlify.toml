@@ -1,6 +1,6 @@
 [build]
   command = "npm run build"
-  publish="react-sorting-hat/build"
+  publish="/build"
   base = "react-sorting-hat"
 
   [[redirects]]
