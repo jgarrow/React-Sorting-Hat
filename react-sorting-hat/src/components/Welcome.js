@@ -11,6 +11,7 @@ const Heading = styled.h1`
     font-size: 3rem;
     margin-top: 5rem;
     margin-bottom: 0;
+    text-align: center;
 `;
 
 const Button = styled(Link)`

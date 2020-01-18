@@ -92,15 +92,6 @@ const Grid = styled.div`
     display: grid;
     grid-template-columns: 120px 150px;
     grid-gap: 15px;
-    grid-template-areas: "label      desc";
-`;
-
-const Label = styled.p`
-    grid-area: label;
-`;
-
-const Description = styled.p`
-    grid-area: desc;
 `;
 
 const houseInfo = {
@@ -239,66 +230,54 @@ class House extends Component {
                             <GridContainer>
                                 <div>
                                     <Grid>
-                                        <Label>Founder: </Label>
-                                        <Description>
+                                        <p>Founder: </p>
+                                        <p>
                                             {
                                                 houseInfo[this.state.house]
                                                     .founder
                                             }
-                                        </Description>
-                                    </Grid>
-                                    <Grid>
-                                        <Label>Animal: </Label>
-                                        <Description>
+                                        </p>
+                                        <p>Animal: </p>
+                                        <p>
                                             {houseInfo[this.state.house].animal}
-                                        </Description>
-                                    </Grid>
-                                    <Grid>
-                                        <Label>Colors: </Label>
-                                        <Description>
+                                        </p>
+                                        <p>Colors: </p>
+                                        <p>
                                             {houseInfo[this.state.house].colors}
-                                        </Description>
-                                    </Grid>
-                                    <Grid>
-                                        <Label>Traits: </Label>
-                                        <Description>
+                                        </p>
+                                        <p>Traits: </p>
+                                        <p>
                                             {houseInfo[this.state.house].traits}
-                                        </Description>
+                                        </p>
                                     </Grid>
                                 </div>
 
                                 <div>
                                     <Grid>
-                                        <Label>Common Room: </Label>
-                                        <Description>
+                                        <p>Common Room: </p>
+                                        <p>
                                             {
                                                 houseInfo[this.state.house][
                                                     "common_room"
                                                 ]
                                             }
-                                        </Description>
-                                    </Grid>
-                                    <Grid>
-                                        <Label>Head of House: </Label>
-                                        <Description>
+                                        </p>
+                                        <p>Head of House: </p>
+                                        <p>
                                             {houseInfo[this.state.house].head}
-                                        </Description>
-                                    </Grid>
-                                    <Grid>
-                                        <Label>House Ghost: </Label>
-                                        <Description>
+                                        </p>
+                                        <p>House Ghost: </p>
+                                        <p>
                                             {houseInfo[this.state.house].ghost}
-                                        </Description>
-                                    </Grid>
-                                    <Grid>
-                                        <Label>Famous People: </Label>
-                                        <Description>
+                                        </p>
+                                        <p>Famous People: </p>
+                                        <p>
                                             {
                                                 houseInfo[this.state.house][
                                                     "famous_people"
                                                 ]
                                             }
-                                        </Description>
+                                        </p>
                                     </Grid>
                                 </div>
                             </GridContainer>

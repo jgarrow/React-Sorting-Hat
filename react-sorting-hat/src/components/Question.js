@@ -11,8 +11,22 @@ const QuestionSlide = styled.div`
     position: relative;
     display: flex;
     justify-content: flex-end;
-    background-image: url("https://vignette.wikia.nocookie.net/pottermore/images/c/c8/B1C7M2.jpg/revision/latest?cb=20120607161745");
-    background-position: right;
+    background: url("https://vignette.wikia.nocookie.net/pottermore/images/c/c8/B1C7M2.jpg/revision/latest?cb=20120607161745"),
+        black;
+    background-position: center;
+
+    @media (max-width: 750px) {
+        background: url(https://vignette.wikia.nocookie.net/pottermore/images/c/c8/B1C7M2.jpg/revision/latest?cb=20120607161745),
+            black;
+        background-position: center;
+        background-size: 100vw;
+        background-repeat: no-repeat;
+    }
+
+    @media (max-width: 500px) {
+        background: black;
+        justify-content: center;
+    }
 `;
 
 const QuestionWrapper = styled.div`
@@ -23,6 +37,24 @@ const QuestionWrapper = styled.div`
     flex-flow: column;
     justify-content: center;
     align-items: center;
+    overflow-y: scroll;
+
+    @media (max-width: 500px) {
+        margin-right: 0;
+    }
+`;
+
+const Qstn = styled.h1`
+    color: antiquewhite;
+    text-align: center;
+
+    @media (max-width: 960px) {
+        font-size: 1.5rem;
+    }
+
+    @media (max-width: 700px) {
+        font-size: 1.15rem;
+    }
 `;
 
 const OptionContainer = styled.div`
@@ -41,6 +73,10 @@ const Option = styled.p`
 
     &:hover {
         text-decoration: underline;
+    }
+
+    @media (max-width: 960px) {
+        font-size: 1rem;
     }
 `;
 
@@ -70,6 +106,11 @@ const Checkbox = styled.div`
         -webkit-transform: rotate(45deg);
         -ms-transform: rotate(45deg);
         transform: rotate(45deg);
+    }
+
+    @media (max-width: 960px) {
+        width: 1rem;
+        height: 1rem;
     }
 `;
 
@@ -153,7 +194,7 @@ class Question extends Component {
         return (
             <QuestionSlide>
                 <QuestionWrapper>
-                    <h1 css={{ color: "antiquewhite" }}>{question}</h1>
+                    <Qstn>{question}</Qstn>
                     <div>
                         {options.map((option, index) => (
                             <OptionContainer key={index}>
