@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import styled from "@emotion/styled";
 import "./fonts/HarryPotter.ttf";
-import "./fonts/lumos-font/Lumos.ttf";
+import "./fonts/AnimalesFantastic.otf";
 import "./App.css";
 
 import Welcome from "./components/Welcome";

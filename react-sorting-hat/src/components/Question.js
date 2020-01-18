@@ -11,18 +11,20 @@ const QuestionSlide = styled.div`
     height: 100vh;
     max-height: 100vh;
     position: relative;
-    display: inline-block;
+    display: flex;
+    justify-content: flex-end;
+    background-image: url("https://vignette.wikia.nocookie.net/pottermore/images/c/c8/B1C7M2.jpg/revision/latest?cb=20120607161745");
+    background-position: right;
 `;
 
 const QuestionWrapper = styled.div`
-    width: 80%;
+    width: 60%;
     height: 100%;
-    margin: 0 auto;
+    margin-right: 1.5rem;
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    flex-grow: 1;
 `;
 
 const OptionContainer = styled.div`
@@ -37,6 +39,7 @@ const OptionContainer = styled.div`
 const Option = styled.p`
     cursor: pointer;
     margin: 10px 0;
+    color: antiquewhite;
 
     &:hover {
         text-decoration: underline;
@@ -152,7 +155,7 @@ class Question extends Component {
         return (
             <QuestionSlide>
                 <QuestionWrapper>
-                    <h1>{question}</h1>
+                    <h1 css={{ color: "antiquewhite" }}>{question}</h1>
                     <div>
                         {options.map((option, index) => (
                             <OptionContainer key={index}>
